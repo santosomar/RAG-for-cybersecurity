@@ -1,3 +1,10 @@
+# This script demonstrates how to create tools using the @tool decorator in LangChain.
+# The @tool decorator simplifies the process of defining tools by handling the setup automatically.
+# Use the @tool decorator to define tools with custom input parameters and output types.
+# The decorator automatically sets up the tool with the necessary configuration.
+
+# Instructor: Omar Santos @santosomar
+
 # Documentation: https://python.langchain.com/v0.1/docs/modules/tools/custom_tools/
 
 # Import necessary libraries
@@ -56,7 +63,7 @@ tools = [
 ]
 
 # Initialize a ChatOpenAI model
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 # Pull the prompt template from the hub
 prompt = hub.pull("hwchase17/openai-tools-agent")

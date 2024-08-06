@@ -70,7 +70,8 @@ tools = [
 ]
 
 # Initialize a ChatOpenAI model
-llm = ChatOpenAI(model="gpt-4o")
+# I am using the gpt-4o-mini model for this example to reduce cost. You can use any model you prefer.
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 # Pull the prompt template from the hub
 prompt = hub.pull("hwchase17/openai-tools-agent")
