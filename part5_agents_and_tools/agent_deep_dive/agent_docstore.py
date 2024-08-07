@@ -1,3 +1,11 @@
+# This script demonstrates how to create a ReAct agent with a document store retriever
+# for answering questions based on the context of the conversation.
+# The agent uses the LangChain Core and LangChain Community modules to create a history-aware retriever
+# and a question-answering chain that combines the retrieved context with the LLM.
+# The agent maintains context using a chat history and provides concise answers to questions based on the context.
+
+# Instructor: Omar Santos @santosomar
+
 import os
 
 from dotenv import load_dotenv
@@ -16,7 +24,7 @@ load_dotenv()
 
 # Load the existing Chroma vector store
 current_dir = os.path.dirname(os.path.abspath(__file__))
-db_dir = os.path.join(current_dir, "..", "..", "4_rag", "db")
+db_dir = os.path.join(current_dir, "..", "..", "part4_rag_examples", "db")
 persistent_directory = os.path.join(db_dir, "chroma_db_with_metadata")
 
 # Check if the Chroma vector store already exists
