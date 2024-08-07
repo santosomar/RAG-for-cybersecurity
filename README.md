@@ -16,4 +16,4 @@ For any queries or further information, please contact:
 
 **Omar Santos**
 - X: [@santosomar](https://x.com/santosomar)
-- [LinkedIn: /santosomar](https://www.linkedin.com/in/santosomar/)
+- LinkedIn: [/santosomar](https://www.linkedin.com/in/santosomar/)
