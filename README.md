@@ -6,7 +6,7 @@ This repository contains resources and materials for the "Using Retrieval Augmen
 
 This course is an exploration of using RAG, Langchain, and LLMs; and their practical applications in both offensive and defensive security operations.
 
-This is an intermediate-level course designed for security professionals who are looking to enhance their knowledge and skills in AI technologies for cybersecurity. Participants should have a basic understanding of cybersecurity concepts and some experience with AI and machine learning. 
+This is a basic-to-intermediate-level course designed for security professionals who are looking to enhance their knowledge and skills in AI technologies for cybersecurity. Participants should have a basic understanding of cybersecurity concepts and some experience with AI and machine learning. 
 
 **Note**: This will continue to be a living course with updates and new content added regularly. 
 
