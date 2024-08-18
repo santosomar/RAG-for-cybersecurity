@@ -11,11 +11,13 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAI
+
 
 # Define the directory containing the text file and the persistent directory
 # Update the file path to the location of the text file
 current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, "data", "tesla.json")
+file_path = os.path.join(current_dir, "data", "ssrf.txt")
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
 
 # Check if the Chroma vector store already exists

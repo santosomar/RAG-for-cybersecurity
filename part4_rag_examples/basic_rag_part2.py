@@ -1,6 +1,6 @@
 # This script demonstrates how to use the LangChain Community VectorStores module to retrieve relevant documents based on a user's question.
- 
 
+# Instructor: Omar Santos @santosomar 
 
 import os
 
@@ -19,12 +19,12 @@ db = Chroma(persist_directory=persistent_directory,
             embedding_function=embeddings)
 
 # Define the user's question
-query = "What api are found?"
+query = "What is SSRF?"
 
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(
     search_type="similarity_score_threshold",
-    search_kwargs={"k": 3, "score_threshold": 0.9},
+    search_kwargs={"k": 5, "score_threshold": 0.5},
 )
 relevant_docs = retriever.invoke(query)
 
