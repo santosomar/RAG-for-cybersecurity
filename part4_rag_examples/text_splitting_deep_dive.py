@@ -1,4 +1,9 @@
-# This 
+# This is a script that demonstrates how to use different text splitters to split text into chunks and create vector stores.
+# It also shows how to query the vector stores to retrieve relevant documents based on a user's question.
+# The script uses the OpenAIEmbeddings model to generate embeddings for the text chunks.
+
+# Instructor: Omar Santos @santosomar
+
 
 import os
 
