@@ -1,3 +1,8 @@
+# This script calculates the cost of embedding a document using the OpenAI API.
+
+# Instructor: Omar Santos @santosomar
+
+# Import the os library to handle file paths
 import os
 
 # Import the tiktoken library to tokenize the text and calculate the cost
