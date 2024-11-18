@@ -9,10 +9,12 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
+# Load environment variables from .env file or from environment variables in the user's machine
+
 load_dotenv()
 
-# Setting up the Streamlit app
-st.title("Omar's Secret Chatbot")
+# Setting up the Streamlit app 
+st.title("Omar's Cybersecurity Chatbot")
 
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
