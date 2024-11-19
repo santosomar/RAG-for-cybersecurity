@@ -4,7 +4,7 @@ langchain_openai
 openai
 tiktoken
 streamlit
-nmap
+python-nmap
 pydantic
 pyyaml
 pyyaml-env-tag
