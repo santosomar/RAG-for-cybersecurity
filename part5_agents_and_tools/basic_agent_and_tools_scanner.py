@@ -87,7 +87,7 @@ agent_executor = AgentExecutor.from_agent_and_tools(
 
 # Run the agent with a test query including an IP address
 # In this case, the agent will scan the IP address 8.8.8.8 and return the results
-response = agent_executor.invoke({"input": "Scan the IP address 8.8.8.8"})
+response = agent_executor.invoke({"input": "Scan the IP address 192.168.25.48"})
 
 # Print the response from the agent
 print("response:", response)

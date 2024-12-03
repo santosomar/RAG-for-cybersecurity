@@ -36,7 +36,7 @@ if not os.path.exists(persistent_directory):
     documents = loader.load()
 
     # Splitting the document into chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
     docs = text_splitter.split_documents(documents)
 
     # Displaying information about the split documents
