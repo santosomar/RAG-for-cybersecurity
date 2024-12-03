@@ -92,7 +92,7 @@ chain = (
 )
 
 # Run the chain with a target system as input
-result = chain.invoke({"target_system": "E-commerce website with cloud infrastructure"})
+result = chain.invoke({"target_system": "E-commerce website running in the cloud"})
 
 # Print the final result
 print(result)

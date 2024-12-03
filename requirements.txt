@@ -8,3 +8,4 @@ python-nmap
 pydantic
 pyyaml
 pyyaml-env-tag
+langchain_chroma

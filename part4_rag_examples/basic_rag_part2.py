@@ -19,7 +19,7 @@ db = Chroma(persist_directory=persistent_directory,
             embedding_function=embeddings)
 
 # Define the user's question
-query = "What is SSRF?"
+query = "What is SSRF? And an example of an SSRF attack."
 
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(
