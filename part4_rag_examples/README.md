@@ -1,4 +1,4 @@
-# Basic RAG Example - Part 1: Vector Store Creation
+# Basic RAG Example: Vector Store Creation
 
 This is an example script by Omar Santos that demonstrates how to create and persist a Chroma vector store from a text file using LangChain. It's designed as an educational example for implementing Retrieval-Augmented Generation (RAG) systems.
 
