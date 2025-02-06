@@ -15,7 +15,7 @@ from langchain_openai import ChatOpenAI
 load_dotenv()
 
 # Create a ChatOpenAI model
-model = ChatOpenAI(model="gpt-4o-mini")
+model = ChatOpenAI(model="o1")
 
 # Define prompt templates
 prompt_template = ChatPromptTemplate.from_messages(
@@ -25,7 +25,6 @@ prompt_template = ChatPromptTemplate.from_messages(
 
     ]
 )
-
 # Define additional processing steps using RunnableLambda
 uppercase_output = RunnableLambda(lambda x: x.upper())
 count_words = RunnableLambda(lambda x: f"Word count: {len(x.split())}\n{x}")

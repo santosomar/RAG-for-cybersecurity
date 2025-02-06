@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Setting up the Streamlit app 
-st.title("Omar's Cybersecurity Chatbot")
+st.title("Omar's Cybersecurity AI Tutor and Mentor")
 
 # Set OpenAI API key from Streamlit secrets
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
