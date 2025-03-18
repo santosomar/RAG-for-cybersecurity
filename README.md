@@ -1,4 +1,4 @@
-# Using Retrieval Augmented Generation (RAG), Langchain, and LLMs for Cybersecurity Operations Course
+# Using Retrieval Augmented Generation (RAG), Langchain, and Agentic Implementatiosn for Cybersecurity Operations Course
 
 This repository contains resources and materials for the ["RAG and AI Applications for Cybersecurity and Networking Professionals"](https://learning.oreilly.com/live-events/rag-and-ai-applications-for-cybersecurity-and-networking-professionals/0642572008474/0642572008473/) and other courses by Omar Santos.
 
