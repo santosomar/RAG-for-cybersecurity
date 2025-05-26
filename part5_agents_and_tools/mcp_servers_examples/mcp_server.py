@@ -16,7 +16,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import nmap
 
-app = FastAPI(title="MCP Cybersecurity Server")
+app = FastAPI(title="MCP Server for Network Port Scanner")
 
 class ScanRequest(BaseModel):
     target: str
