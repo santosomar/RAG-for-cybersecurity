@@ -63,7 +63,7 @@ The script will:
 
 ## Note
 
-The example uses `gpt-4o-mini` as the model. Make sure to update the model name in the code if you want to use a different OpenAI model.
+The example uses `gpt-4.1-mini` as the model. Make sure to update the model name in the code if you want to use a different OpenAI model.
 
 
 ---

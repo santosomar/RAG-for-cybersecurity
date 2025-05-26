@@ -90,7 +90,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableParallel, RunnableLambda
 from langchain_openai import ChatOpenAI
 
-model = ChatOpenAI(model="gpt-4o-mini")
+model = ChatOpenAI(model="gpt-4.1-mini")
 ```
 - Uses ChatOpenAI with GPT-4 for AI processing
 - Implements RunnableParallel for concurrent execution
