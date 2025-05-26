@@ -16,8 +16,8 @@ from langchain_openai import ChatOpenAI
 # Load environment variables from .env
 load_dotenv()
 
-# Create a ChatOpenAI model with the model name "gpt-4o-mini" for this example. Feel free to use other models.
-model = ChatOpenAI(model="gpt-4o-mini")
+# Create a ChatOpenAI model with the model name "gpt-4.1-mini" for this example. Feel free to use other models.
+model = ChatOpenAI(model="gpt-4.1-mini")
 
 # Define prompt template
 prompt_template = ChatPromptTemplate.from_messages(
