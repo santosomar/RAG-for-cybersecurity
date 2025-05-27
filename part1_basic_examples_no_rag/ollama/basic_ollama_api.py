@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# This is a basic example of using the Ollama API
+# You can run this file directly with `python basic_ollama_api.py`
+# Author: Omar Santos @santosomar
+
+# Ollama API Documentation: https://ollama.com/docs/api
+
+# Import the required libraries
 import ollama
 
 # Basic text generation
