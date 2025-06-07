@@ -16,6 +16,6 @@ from transformers import pipeline
 
 # Example usage
 classifier = pipeline("sentiment-analysis")
-result = classifier("Omar, I hate using Hugging Face!")
+result = classifier("Omar, I LOVE using Hugging Face!")
 print(result)
 
