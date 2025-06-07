@@ -38,7 +38,7 @@ def streaming_chat(messages: list, model: str = "llama3.2"):
 def analyze_image(image_path: str, question: str):
     with open(image_path, 'rb') as file:
         response = ollama.chat(
-            model='llama3.2',
+            model='llava',
             messages=[{
                 'role': 'user',
                 'content': question,
