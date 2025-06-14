@@ -24,19 +24,11 @@ class AgentRequest(BaseModel):
 @app.post("/scan")
 def scan(req: ScanRequest):
     """Perform a fast nmap scan and return open ports."""
-    nm = nmap.PortScanner()
     try:
-        nm.scan(req.target, arguments="-F")
+        open_ports = scan_ports(req.target, arguments="-F")
+        return {"target": req.target, "open_ports": sorted(set(open_ports))}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
-
-    open_ports = []
-    for host in nm.all_hosts():
-        for proto in nm[host].all_protocols():
-            open_ports.extend(nm[host][proto].keys())
-    return {"target": req.target, "open_ports": sorted(set(open_ports))}
-
-
 @app.post("/agent")
 def agent(req: AgentRequest):
     """Ask the MCP agent a question. It may choose to run a scan."""
