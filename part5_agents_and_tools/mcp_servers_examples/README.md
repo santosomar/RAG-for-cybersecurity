@@ -32,9 +32,9 @@ lightweight nmap scan or answer general questions using OpenAI models.
    ```
 2. Ensure `nmap` is installed (e.g. `sudo apt-get install nmap`).
 3. Run the server:
+   First, navigate to the directory containing `mcp_server.py`:
    ```bash
-   python mcp_server.py
-   ```
+   cd part5_agents_and_tools/mcp_servers_examples
 4. Send a request to the `/scan` endpoint. Example:
    ```bash
    curl -X POST -H "Content-Type: application/json" \
