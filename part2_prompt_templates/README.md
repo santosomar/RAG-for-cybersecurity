@@ -1,10 +1,27 @@
 # Prompt Template Examples
 
-This directory contains examples of how to create and use `ChatPromptTemplate` with LangChain for generating prompts for models.
+This directory contains examples and documentation about creating and using `ChatPromptTemplate` with LangChain for generating prompts for models, with a focus on cybersecurity applications.
 
-## prompt_template_example.py
+## Files Overview
 
-This script demonstrates various ways to create a `ChatPromptTemplate` using template strings and lists of messages. The examples are designed to show how to generate prompts for a model, specifically for cybersecurity topics.
+### chat_prompt_template.py
+Demonstrates how to create and use chat prompt templates to generate responses to user questions. This script shows how to work with LangChain's chat templates and includes examples of system messages, user inputs, and AI responses.
+
+### messages_placeholders.py
+Illustrates the use of message placeholders in prompt templates, allowing for dynamic inclusion of message lists within prompts. This is particularly useful when building interactive chat systems or maintaining conversation history.
+
+### prompt_template_example.py
+Provides various examples of creating `ChatPromptTemplate` using template strings and lists of messages. The examples focus on cybersecurity-specific scenarios and show different ways to structure prompts for security-related tasks.
+
+### prompt_engineering_techniques.md
+A comprehensive guide documenting various advanced prompting techniques for enhancing LLM interactions. Includes detailed information about:
+- Chain-of-Thought reasoning
+- Tree-of-Thought approaches
+- ReAct patterns
+- Self-Correction methods
+- System-Level Instructions
+- Contextual Priming
+Each technique is explained with implementation ideas and integration notes for LangChain Expression Language (LCEL) and LangGraph.
 
 ### Examples
 

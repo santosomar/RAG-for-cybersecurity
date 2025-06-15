@@ -1,43 +1,99 @@
-# Basic Agent and Tools Examples
+# Agents and Tools Examples
 
-This folder contains examples demonstrating the use of LangChain agents and tools.
-It has the following files:
+This directory contains advanced examples demonstrating the implementation and use of AI agents and tools in cybersecurity applications. The examples showcase various agent architectures, from basic tool usage to complex agentic workflows using LangGraph.
 
-- `basic_agent_and_tools.py`: A basic example demonstrating a simple LangChain agent that uses tools to perform actions.
-- `basic_agent_and_tools_scanner.py`: A basic example demonstrating a LangChain agent that uses tools to perform network scanning.
+## Directory Structure
 
----
+### Basic Examples
+- `basic_agent_and_tools.py`: A foundational example showing:
+  - Basic agent setup with ReAct framework
+  - Tool creation and integration
+  - ChatOpenAI model interaction
+  - Simple task execution patterns
 
+- `basic_agent_and_tools_scanner.py`: Security-focused implementation featuring:
+  - Network scanning capabilities
+  - Security tool integration
+  - Safe execution patterns
 
-## Basic Agent and Tools Example
+### Agent Deep Dive (`agent_deep_dive/`)
 
-The script `basic_agent_and_tools.py`demonstrates the implementation of a simple LangChain agent that uses tools to perform actions. The example specifically shows how to create an agent that can tell the current time using a custom tool.
+#### Core Agent Examples
+- `agent_chat.py`: Advanced chat agent featuring:
+  - Conversation memory management
+  - Wikipedia search integration
+  - Structured chat prompts
+  - Error handling and logging
 
-## Description
+- `agent_docstore.py`: Document-aware agent with:
+  - Document storage integration
+  - Content retrieval capabilities
+  - Context-aware responses
 
-The script showcases:
-- Creating a basic LangChain agent using the ReAct (Reason and Action) framework
-- Implementing a custom tool (get current time)
-- Using ChatOpenAI (GPT-4) as the underlying language model
-- Executing the agent with a simple query
+#### LangGraph Integration (`langgraph/`)
+- `branching_conditional_logic.py`: Demonstrates:
+  - Complex decision workflows
+  - State management in multi-step processes
+  - Conditional branching logic
+  - Integration with LangGraph framework
+
+### Agentic RAG Implementation (`agentic_rag/`)
+- Main implementation in `agentic_rag_example.py`:
+  - Vector store integration
+  - SSRF vulnerability analysis
+  - Dynamic information retrieval
+  - Intelligent query processing
+- Includes detailed README with implementation specifics
+
+### MCP Servers (`mcp_servers_examples/`)
+- `mcp_server.py`: FastAPI-based security server:
+  - Port scanning functionality
+  - API endpoint management
+  - Security assessment tools
+- Comprehensive README with setup and usage instructions
+
+## Key Features
+
+- **Agent Architectures**: Multiple agent implementations from basic to complex
+- **Tool Integration**: Examples of integrating security tools and APIs
+- **Memory Management**: Conversation and context retention techniques
+- **Workflow Management**: LangGraph-based complex decision flows
+- **Security Focus**: Cybersecurity-specific implementations and use cases
 
 ## Prerequisites
 
 - Python 3.x
-- OpenAI API key (must be set in `.env` file)
+- LangChain and LangGraph
+- OpenAI API access
+- Additional security tools as required by specific examples
 
-## Installation
+## Getting Started
 
-1. Clone the repository
-2. Install the required packages:
-```bash
-pip install langchain langchain-openai python-dotenv
-```
+1. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Set up environment variables in `.env`:
+   - OpenAI API key
+   - Other required API credentials
+3. Review individual README files in subdirectories
+4. Start with basic examples before moving to complex implementations
 
-3. Create a `.env` file in the root directory and add your OpenAI API key:
-```bash
-OPENAI_API_KEY=your_api_key_here
-```
+## Usage Examples
+
+Each subdirectory contains specific usage examples and documentation. Start with:
+1. Basic agent examples to understand core concepts
+2. Move to agent deep dive for advanced features
+3. Explore agentic RAG for information retrieval
+4. Study MCP servers for API integration
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit pull requests with:
+- New agent examples
+- Additional security tools
+- Improved documentation
+- Bug fixes and optimizations
 
 ## Usage
 

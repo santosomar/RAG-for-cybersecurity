@@ -1,18 +1,53 @@
-# Basic LangChain OpenAI Chat Example
+# Basic Examples Without RAG
 
-This folder contains a basic example demonstrating how to use LangChain with OpenAI's chat models without Retrieval Augmented Generation (RAG).
+This directory contains fundamental examples demonstrating various aspects of working with language models, embeddings, and chat functionalities without using Retrieval Augmented Generation (RAG).
 
 ## Overview
 
-The example shows how to:
-- Set up a basic chat interaction with OpenAI's models through LangChain
-- Load environment variables securely
-- Create and invoke a chat model
-- Handle and display model responses
+These examples cover:
+- Basic chat interactions with OpenAI and other models
+- Embedding generation and usage
+- Interactive chatbot development
+- Integration with different model providers (OpenAI, Hugging Face, Ollama)
+- Document processing and multimodal capabilities
 
 ## Files
 
-- `chat_model_basic.py`: Basic implementation of chat functionality using LangChain and OpenAI
+### Core Examples
+- `chat_model_basic.py`: A foundational example showing how to use LangChain with OpenAI's chat models. Demonstrates basic model invocation, message handling, and response processing.
+
+- `chatbot_example.py`: A complete Streamlit-based chatbot implementation using OpenAI. Features include:
+  - Interactive chat interface
+  - Conversation history management
+  - Environment variable handling
+  - User-friendly web interface
+
+- `embeddings.py`: Demonstrates text embedding generation using OpenAI's API. Shows how to:
+  - Generate embeddings for text input
+  - Use the text-embedding-3-small model
+  - Process and handle embedding vectors
+
+### Advanced Integration Examples
+- `huggingface_example.py`: Shows integration with Hugging Face's transformers library:
+  - Sentiment analysis using DistilBERT
+  - Pipeline setup and configuration
+  - Model loading and inference
+  - Compatible with PyTorch, TensorFlow, or Flax
+
+### Ollama Integration
+- `ollama/basic_ollama_api.py`: Comprehensive example of using Ollama's API:
+  - Basic text generation
+  - Chat with conversation history
+  - Streaming responses
+  - Multi-modal analysis with LLaVA model
+  - Image analysis capabilities
+
+### Documentation
+- `chunking_and_images.md`: Detailed guide on handling documents with images:
+  - Multimodal document analysis techniques
+  - PDF and image processing best practices
+  - OCR integration strategies
+  - Chunking strategies for documents with images
 
 ## Prerequisites
 
