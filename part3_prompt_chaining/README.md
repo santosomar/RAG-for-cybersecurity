@@ -1,8 +1,8 @@
 # Prompt Chaining Examples
 
-This directory contains examples demonstrating the use of LangChain Expression Language (LCEL) for creating and managing prompt chains.
+This directory contains examples demonstrating the use of LangChain Expression Language (LCEL) for creating and managing prompt chains, with a focus on cybersecurity applications.
 
-## Files
+## Files Overview
 
 ### `basic_chain_example.py`
 A demonstration of how to create and execute a basic prompt chain using LangChain. This example showcases:
@@ -48,7 +48,6 @@ python basic_chain_example.py
 
 This directory focuses on demonstrating prompt chaining techniques in LangChain, particularly useful for creating complex, multi-step AI interactions with intermediate processing steps.
 
-
 ### `branching_chains.py`
 A sophisticated example demonstrating how to implement conditional branching in LangChain chains for vulnerability assessment. This example:
 - Classifies security vulnerabilities by severity (critical, high, medium, low)
@@ -67,10 +66,20 @@ Example usage:
 python branching_chains.py
 ```
 
+# `parallel_chains.py`
+A sophisticated example demonstrating how to implement parallel processing chains in LangChain for automated penetration testing workflows. This example:
+- Creates an automated penetration testing plan by running two parallel chains:
+- Reconnaissance chain that identifies potential information gathering techniques
+- Exploitation chain that suggests possible attack vectors
+- Combines the outputs from both chains into a comprehensive penetration testing plan.
+
+Example usage:
+```bash
+python parallel_chains.py
+```
+
 ---
 
-
-I'll explain the `parallel_chains.py` file in detail:
 
 # Parallel Chains for Penetration Testing
 
