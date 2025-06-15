@@ -1,16 +1,109 @@
-# Basic RAG Example: Vector Store Creation
+# RAG Examples for Cybersecurity
 
-This is an example script by Omar Santos that demonstrates how to create and persist a Chroma vector store from a text file using LangChain. It's designed as an educational example for implementing Retrieval-Augmented Generation (RAG) systems.
+This directory contains comprehensive examples of implementing Retrieval-Augmented Generation (RAG) systems for cybersecurity applications. The examples demonstrate various aspects of RAG implementation, from basic vector store creation to advanced querying and document processing.
 
-## Overview
+## Directory Structure
 
-The script performs the following operations:
-1. Checks for an existing vector store in the specified persistent directory
-2. If no vector store exists, it:
-   - Loads a text file containing SSRF (Server-Side Request Forgery) vulnerability information
-   - Splits the document into manageable chunks
-   - Creates embeddings using OpenAI's embedding model
-   - Stores the embeddings in a Chroma vector database
+### Core Implementation Files
+
+#### Basic RAG Implementation
+- `basic_rag_part1.py`: First part of the RAG implementation:
+  - Vector store creation from text documents
+  - Document chunking with CharacterTextSplitter
+  - Embedding generation with OpenAI
+  - Persistent storage setup
+
+- `basic_rag_part2.py`: Second part focusing on retrieval and querying:
+  - Vector store querying
+  - Relevant document retrieval
+  - Question answering with context
+
+### Data Directory (`data/`)
+Contains sample documents for RAG processing:
+- `ssrf.txt`: Comprehensive guide on Server-Side Request Forgery prevention
+- `tesla.json`: Tesla-related security data
+- `tesla_hostnames.txt`: Collection of Tesla-related hostnames
+
+### Database Directory (`db/`)
+Contains various Chroma vector store implementations:
+
+#### Main Vector Stores
+- `chroma_db/`: Default vector store using OpenAI embeddings
+- `chroma_db_openai/`: Specialized store with OpenAI embeddings
+- `chroma_db_huggingface/`: Alternative store using Hugging Face models
+
+#### Specialized Implementations
+- `chroma_db_char/`: Character-based splitting implementation
+- `chroma_db_custom/`: Custom embedding configuration
+- `chroma_db_rec_char/`: Recursive character-based splitting
+
+## Features
+
+### Document Processing
+- Multiple document format support (.txt, .json)
+- Flexible text splitting strategies
+- Metadata tracking for document sources
+- Automatic vector store initialization
+
+### Embedding Options
+- OpenAI embeddings integration
+- Hugging Face models support
+- Custom embedding configurations
+
+### Storage and Retrieval
+- Persistent vector storage
+- Efficient similarity search
+- Context-aware question answering
+- Multiple database configurations
+
+## Prerequisites
+
+- Python 3.x
+- Required packages:
+  ```bash
+  pip install langchain langchain-openai chromadb
+  ```
+- OpenAI API key for embeddings
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Set up your environment:
+   ```bash
+   export OPENAI_API_KEY='your-api-key'
+   ```
+
+3. Run the basic example:
+   ```bash
+   python basic_rag_part1.py  # Create vector store
+   python basic_rag_part2.py  # Query the store
+   ```
+
+## Usage Examples
+
+### Basic Vector Store Creation
+```python
+# Create a new vector store
+python basic_rag_part1.py
+```
+
+### Document Querying
+```python
+# Query existing vector store
+python basic_rag_part2.py
+```
+
+## Contributing
+
+Contributions are welcome! Areas for improvement:
+- Additional document formats
+- New embedding models
+- Enhanced querying strategies
+- Performance optimizations
 
 ## Prerequisites
 
@@ -153,35 +246,7 @@ part4_rag_examples/
    export OPENAI_API_KEY='your-api-key'
    ```
 
-2. Place your text files in the `data/` directory
-
-3. Run the script:
-   ```bash
-   python rag_basics_metadata_part1.py
-   ```
-
-## Features
-
-- **Multiple Document Processing**: Processes all .txt files in the data directory
-- **Metadata Tracking**: Stores the source filename as metadata for each document
-- **Automatic Vector Store Initialization**: Only creates a new vector store if one doesn't exist
-- **Document Chunking**: Splits large documents into manageable pieces (1000 characters each)
-- **Persistent Storage**: Saves the vector store to disk for future use
-- **OpenAI Embeddings**: Uses OpenAI's text-embedding-3-small model for creating embeddings
-
-## Configuration
-
-- Chunk size: 1000 characters
-- No chunk overlap
-- Embedding model: text-embedding-3-small
-- Supported file format: .txt
-
-## Notes
-
-- The script will raise a FileNotFoundError if the data directory doesn't exist
-- Progress messages are printed during vector store creation
-- The vector store is only created once; subsequent runs will use the existing store
-
+2. Place your text file in the `data/` directory
 ---
 
 
