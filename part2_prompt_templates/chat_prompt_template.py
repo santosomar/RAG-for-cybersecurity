@@ -1,5 +1,5 @@
 # We will create a chat prompt template that will be used to generate a response to a user's question.
-# The explanation is available at: https://cybercopilot.org/QOrM2Qm
+# The explanation is available at: https://cybercopilot.org/Rmr98k1
 # Instructor: Omar Santos @santosomar
 
 # LangChain Chat Prompt Template Documents: https://python.langchain.com/docs/how_to/#prompt-templates 
