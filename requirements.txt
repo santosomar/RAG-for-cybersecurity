@@ -9,7 +9,7 @@ pydantic
 pyyaml
 pyyaml-env-tag
 langchain_chroma
-urllib3<2.0.0
+urllib3<3.0.0
 transformers
 torch
 huggingface
