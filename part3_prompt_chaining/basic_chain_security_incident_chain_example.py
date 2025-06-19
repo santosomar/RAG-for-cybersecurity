@@ -141,17 +141,6 @@ incident_specific_chain = RunnableBranch(
     RunnableLambda(lambda x: format_to_json("General incident analysis - no specific chain available", "general_analysis"))
 )
 
-# Define a function to parse JSON responses
-def parse_json_responses(responses):
-    result = {}
-    for response in responses:
-        try:
-            json_data = json.loads(response)
-            result.update(json_data)
-        except:
-            # If not valid JSON, add as raw text
-            result["additional_info"] = response
-    return result
 
 # Create the complete analysis pipeline
 def full_analysis_chain():
