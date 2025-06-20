@@ -125,15 +125,23 @@ branches = RunnableBranch(
 # Create the classification chain
 classification_chain = classification_template | model | StrOutputParser()
 
-# Create a chain that preserves the original input
-# This allows us to pass the original indicator to the branch templates
-preserved_input = RunnablePassthrough()
+# Create a chain that combines classification with branching logic
+from langchain.schema.runnable import RunnableMap
 
-# Combine classification and branch selection into one chain
-# We need to preserve the original input to use in the branch templates
-chain = {"classification": classification_chain, "indicator": preserved_input} | (
-    lambda x: branches.invoke(x["classification"], {"indicator": x["indicator"]})
-)
+# Step 1: Create a map that runs classification and preserves input
+input_and_classification = RunnableMap({
+    "classification": lambda x: classification_chain.invoke({"indicator": x["indicator"]}),
+    "indicator": lambda x: x["indicator"]
+})
+
+# Step 2: Create a function that routes to the appropriate branch based on classification
+def route_to_branch(inputs):
+    classification = inputs["classification"]
+    indicator = inputs["indicator"]
+    return branches.invoke(classification, {"indicator": indicator})
+
+# Step 3: Chain them together
+chain = input_and_classification.with_fallbacks([]).pipe(route_to_branch)
 
 # Example indicators to test
 examples = [
