@@ -69,6 +69,7 @@ pip install langchain langchain-openai python-dotenv
 ```
 OPENAI_API_KEY=your_api_key_here
 ```
+**SECURITY NOTE**: Never commit your API keys to version control. Also, instead of using environment variables to store sensitive information, you can use a secrets management service like CyberArk Conjur, HashiCorp Vault or AWS Secrets Manager.
 
 ## Usage
 

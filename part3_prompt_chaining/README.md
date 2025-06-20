@@ -1,190 +1,91 @@
-# Prompt Chaining Examples
+# Part 3: Prompt Chaining Examples
 
-This directory contains examples demonstrating the use of LangChain Expression Language (LCEL) for creating and managing prompt chains, with a focus on cybersecurity applications.
+This directory contains examples demonstrating various prompt chaining techniques using LangChain Expression Language (LCEL). These examples showcase how to build sophisticated workflows for cybersecurity tasks by connecting different language model calls and processing steps.
 
-## Files Overview
+## Files
 
-### `basic_chain_example.py`
-A demonstration of how to create and execute a basic prompt chain using LangChain. This example showcases:
-- Creating chains using LCEL (LangChain Expression Language)
-- Working with ChatOpenAI models
-- Using prompt templates
-- Implementing custom processing steps with RunnableLambda
-- Parsing and transforming outputs
+### 1. `basic_chain_example1.py`
 
-The example specifically creates a chain that:
-1. Takes input about a cybersecurity topic and desired number of tips
-2. Processes it through a GPT-4 model
-3. Converts the output to uppercase
-4. Adds a word count to the final result
+*   **Purpose**: Demonstrates a fundamental LCEL chain.
+*   **Functionality**:
+    *   Initializes a `ChatOpenAI` model (`gpt-4.1-mini`).
+    *   Uses a `ChatPromptTemplate` to instruct an AI (as an 'ethical hacker') to provide a specified number of techniques and tools for a given topic.
+    *   Includes custom processing steps using `RunnableLambda`:
+        *   `uppercase_output`: Converts the AI's string output to uppercase.
+        *   `count_words`: Prepends a word count to the string output.
+    *   The chain is constructed as: `prompt_template | model | StrOutputParser() | uppercase_output | count_words`.
+    *   Invokes the chain with a sample topic ('scanning a web application') and a tip count (5), then prints the final processed output.
 
-## Setup Requirements
+### 2. `basic_chain_security_incident_chain_example.py`
 
-1. Install required dependencies:
-```bash
-pip install langchain langchain-openai python-dotenv
-```
+*   **Purpose**: Illustrates a multi-stage security incident analysis workflow.
+*   **Functionality**:
+    *   Defines multiple `ChatPromptTemplate` instances for various AI personas and analysis stages (initial assessment, threat actor analysis, impact assessment, mitigation, CISO summary, and specific incident types like malware, phishing, data breach).
+    *   Uses a helper function `format_to_json` to structure analysis outputs into JSON.
+    *   Constructs specialized analysis chains that output JSON.
+    *   Implements conditional logic using `RunnableBranch` (`incident_specific_chain`) based on incident type classification performed by `determine_incident_type`.
+    *   The `full_analysis_chain` orchestrates the entire workflow: initial analysis, incident classification, parallel execution of specialized analyses (threat, impact, mitigation, type-specific), and generation of an executive summary.
+    *   Demonstrates invoking the chain with sample incident details and printing the summary and full analysis.
 
-2. Create a `.env` file with your OpenAI API key:
-```
-OPENAI_API_KEY=your_api_key_here
-```
+### 3. `branching_chains.py`
 
-## Usage
+*   **Purpose**: Shows how to use `RunnableBranch` for conditional routing in a vulnerability assessment context.
+*   **Functionality**:
+    *   Classifies the severity of a reported vulnerability (critical, high, medium, or low) using a `classification_template`.
+    *   Based on the classification, routes the input to one of four specialized sub-chains, each with a prompt template tailored to the severity level.
+    *   Each sub-chain generates an appropriate response (e.g., pen test plan for critical, remediation strategy for high).
+    *   Initializes a `ChatOpenAI` model (`gpt-4.1-mini`).
+    *   Invokes the chain with an example vulnerability ("Unpatched remote code execution vulnerability in an Apache httpd web server") and prints the result.
 
-To run the basic chain example:
-```bash
-python basic_chain_example.py
-```
+### 4. `branching_chains_threat_hunting.py`
 
-## Key Concepts
+*   **Purpose**: Demonstrates a threat hunting workflow that adapts based on the type of indicator of compromise (IOC).
+*   **Functionality**:
+    *   Classifies an input IOC as IP address, domain, file hash, or behavior pattern using a `classification_template` and a helper function `determine_indicator_type`.
+    *   Uses `RunnableBranch` to route the IOC to a specialized analysis path. Each path has a unique `ChatPromptTemplate` instructing an AI (as an expert threat hunter) to generate a detailed threat hunting plan specific to the IOC type.
+    *   Employs `RunnableMap` to preserve the original indicator alongside its classification for use in the branched chains.
+    *   Initializes a `ChatOpenAI` model (`gpt-4.1-mini`).
+    *   Runs the chain with example IOCs of each type and prints the generated hunting plans.
 
-- **Prompt Templates**: Structured templates for generating consistent prompts
-- **LCEL**: LangChain Expression Language for creating chains using the `|` operator
-- **RunnableLambda**: Custom transformation steps in the chain
-- **Output Parsing**: Converting model outputs into desired formats
+### 5. `parallel_chains.py`
 
-## Note
+*   **Purpose**: Illustrates using `RunnableParallel` to execute different analysis paths concurrently for a penetration testing scenario.
+*   **Functionality**:
+    *   Takes a `target_system` as input.
+    *   An initial prompt gathers general characteristics and potential entry points of the target.
+    *   Two parallel branches are defined:
+        *   **Reconnaissance Branch**: Generates a list of reconnaissance techniques and tools.
+        *   **Exploitation Branch**: Suggests potential exploitation methods and tools.
+    *   These branches are implemented using `RunnableLambda` functions that format specific prompts, which are then piped to the AI model.
+    *   `RunnableParallel` executes these two branches.
+    *   The outputs from both branches are then combined by a final `RunnableLambda` (`create_pentest_plan`) into a single penetration testing plan.
+    *   Initializes a `ChatOpenAI` model (`gpt-4.1-mini`).
+    *   Invokes the chain with an example target ("E-commerce website running in the cloud") and prints the plan.
 
-This directory focuses on demonstrating prompt chaining techniques in LangChain, particularly useful for creating complex, multi-step AI interactions with intermediate processing steps.
+### 6. `parallel_chains_threat_hunting.py`
 
-### `branching_chains.py`
-A sophisticated example demonstrating how to implement conditional branching in LangChain chains for vulnerability assessment. This example:
-- Classifies security vulnerabilities by severity (critical, high, medium, low)
-- Generates appropriate responses based on the classification
-- Uses different prompt templates for each severity level
-- Implements branching logic using RunnableBranch
+*   **Purpose**: Showcases a comprehensive threat hunting workflow using `RunnableParallel` to analyze an indicator from multiple perspectives simultaneously.
+*   **Functionality**:
+    *   Processes a threat indicator through an `initial_assessment_chain`.
+    *   Then, using `RunnableParallel`, the indicator is concurrently analyzed by four specialized branches:
+        *   **Technical Analysis**: Focuses on TTPs, malware families, and technical detection methods.
+        *   **Threat Context**: Gathers historical usage, associated campaigns, and geo/industry targeting.
+        *   **Hunting Strategy**: Develops specific hunt queries and identifies artifacts.
+        *   **Mitigation**: Recommends containment, monitoring, and long-term defense.
+    *   Each branch uses a specific `ChatPromptTemplate` and is constructed as a `RunnableLambda` piped to the AI model.
+    *   The results from the initial assessment and all parallel branches are combined into a `COMPREHENSIVE THREAT HUNTING REPORT` by the `create_threat_hunting_report` function, orchestrated via `RunnableLambda` and `RunnableParallel` to manage inputs.
+    *   Initializes a `ChatOpenAI` model (`gpt-4.1-mini`).
+    *   Runs the chain with example indicators and prints the detailed report.
 
-Key features:
-- Classification chain for determining vulnerability severity
-- Specialized response templates for each severity level
-- Automated branching based on classification results
-- Complete end-to-end processing pipeline
+## Common Elements
 
-Example usage:
-```bash
-python branching_chains.py
-```
+*   **`dotenv`**: Used in all scripts to load environment variables (like API keys) from a `.env` file.
+*   **`ChatOpenAI`**: The primary language model interface, typically initialized with `gpt-4.1-mini`.
+*   **`ChatPromptTemplate`**: Used to structure the input to the language model, often defining a system message (persona) and a human message (task).
+*   **`StrOutputParser`**: A common output parser to convert the model's message object into a simple string.
+*   **`RunnableLambda`**: Allows arbitrary Python functions to be integrated into LCEL chains.
+*   **LCEL Pipe Syntax (`|`)**: The core mechanism for chaining components together.
 
-# `parallel_chains.py`
-A sophisticated example demonstrating how to implement parallel processing chains in LangChain for automated penetration testing workflows. This example:
-- Creates an automated penetration testing plan by running two parallel chains:
-- Reconnaissance chain that identifies potential information gathering techniques
-- Exploitation chain that suggests possible attack vectors
-- Combines the outputs from both chains into a comprehensive penetration testing plan.
+These examples provide a solid foundation for understanding and building complex, multi-step AI-driven workflows for various cybersecurity applications.
 
-Example usage:
-```bash
-python parallel_chains.py
-```
-
----
-
-
-# Parallel Chains for Penetration Testing
-
-This file demonstrates how to create parallel processing chains in LangChain for automated penetration testing workflows. Here's a breakdown of its key components and functionality:
-
-## Purpose
-The script creates an automated penetration testing plan by running two parallel chains:
-1. A reconnaissance chain that identifies potential information gathering techniques
-2. An exploitation chain that suggests possible attack vectors
-These are then combined into a comprehensive penetration testing plan.
-
-## Key Components
-
-### 1. Setup and Configuration
-```python
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema.runnable import RunnableParallel, RunnableLambda
-from langchain_openai import ChatOpenAI
-
-model = ChatOpenAI(model="gpt-4.1-mini")
-```
-- Uses ChatOpenAI with GPT-4 for AI processing
-- Implements RunnableParallel for concurrent execution
-- Uses RunnableLambda for custom function integration
-
-### 2. Initial Assessment
-```python
-prompt_template = ChatPromptTemplate.from_messages([
-    ("system", "You are an expert ethical hacker and penetration tester."),
-    ("human", "Outline the main characteristics and potential entry points of the target system {target_system}."),
-])
-```
-Creates an initial prompt to gather basic information about the target system.
-
-### 3. Reconnaissance Function
-```python
-def perform_reconnaissance(target_info):
-    '''Generates reconnaissance techniques and tools recommendations'''
-    recon_template = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert ethical hacker specializing in reconnaissance."),
-        ("human", "Given this target information: {target_info}, list potential reconnaissance techniques and tools...")
-    ])
-```
-- Specializes in information gathering techniques
-- Generates specific recommendations for reconnaissance tools
-- Takes target information as input
-
-### 4. Exploitation Function
-```python
-def plan_exploitation(target_info):
-    '''Generates exploitation methods and tools recommendations'''
-    exploit_template = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert ethical hacker specializing in exploitation techniques."),
-        ("human", "Based on this target information: {target_info}, suggest potential exploitation methods...")
-    ])
-```
-- Focuses on potential attack vectors
-- Suggests relevant exploitation tools and methods
-- Uses target information to customize recommendations
-
-### 5. Plan Generation
-```python
-def create_pentest_plan(recon, exploit):
-    '''Combines reconnaissance and exploitation into a complete plan'''
-    return f"Reconnaissance Phase:\n{recon}\n\nExploitation Phase:\n{exploit}"
-```
-Merges the outputs from both chains into a structured penetration testing plan.
-
-### 6. Chain Construction
-```python
-# Define individual branches
-recon_branch_chain = (
-    RunnableLambda(lambda x: perform_reconnaissance(x)) | model | StrOutputParser()
-)
-exploit_branch_chain = (
-    RunnableLambda(lambda x: plan_exploitation(x)) | model | StrOutputParser()
-)
-
-# Combine into final chain
-chain = (
-    prompt_template
-    | model
-    | StrOutputParser()
-    | RunnableParallel(branches={"reconnaissance": recon_branch_chain, "exploitation": exploit_branch_chain})
-    | RunnableLambda(lambda x: create_pentest_plan(x["branches"]["reconnaissance"], x["branches"]["exploitation"]))
-)
-```
-- Creates parallel processing branches for reconnaissance and exploitation
-- Uses LCEL (LangChain Expression Language) for chain composition
-- Implements parallel execution using RunnableParallel
-- Combines results into a final plan
-
-## Usage
-```python
-result = chain.invoke({"target_system": "E-commerce website with cloud infrastructure"})
-print(result)
-```
-- Takes a target system description as input
-- Outputs a complete penetration testing plan with both reconnaissance and exploitation phases
-
-## Benefits
-1. **Parallel Processing**: Improves efficiency by running reconnaissance and exploitation analysis simultaneously
-2. **Modular Design**: Easy to modify or extend individual components
-3. **Structured Output**: Generates organized, comprehensive penetration testing plans
-4. **Specialized Expertise**: Each chain focuses on specific aspects of penetration testing
-5. **Scalability**: Can be extended to include additional parallel branches for other testing phases
-
-This script demonstrates advanced LangChain concepts while providing practical utility for automated penetration testing planning.
+**SECURITY NOTE**: Never commit your API keys to version control. Also, instead of using environment variables to store sensitive information, you can use a secrets management service like CyberArk Conjur, HashiCorp Vault or AWS Secrets Manager.
