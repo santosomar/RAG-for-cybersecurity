@@ -73,7 +73,7 @@ if not os.path.exists(persistent_directory):
     )  # Update to a valid embedding model if needed
     print("\n--- Finished creating embeddings ---")
 
-    # Creatting the vector store/database
+    # Creating the vector store/database
     print("\n--- Creating vector store ---")
     db = Chroma.from_documents(
         all_chunks, embeddings, persist_directory=persistent_directory
