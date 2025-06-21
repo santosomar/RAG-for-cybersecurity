@@ -23,43 +23,48 @@ files_to_load = [
     os.path.join(current_dir, "data", "ssrf.txt"),
     os.path.join(current_dir, "data", "llm_cheatsheet.md"),
 ]
-persistent_directory = os.path.join(current_dir, "db", "chroma_db")
+persistent_directory = os.path.join(current_dir, "db", "chroma_db_security")
 
 # Checking if the Chroma vector store already exists
 if not os.path.exists(persistent_directory):
     print("Persistent directory does not exist. Initializing vector store...")
 
-    all_documents = []
-    print("\n--- Loading Documents ---")
+    # Initialize the text splitter
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    # A list to hold all document chunks
+    all_chunks = []
+
+    print("\n--- Loading and Processing Documents ---")
+    # Loop through each file
     for file_path in files_to_load:
         # Ensuring that the text file exists
         if not os.path.exists(file_path):
             print(f"Warning: The file {file_path} does not exist. Skipping.")
             continue
 
-        print(f"-> Loading: {os.path.basename(file_path)}")
+        print(f"\n-> Processing: {os.path.basename(file_path)}")
         # Use the appropriate loader based on file extension
         if file_path.endswith(".md"):
             loader = UnstructuredMarkdownLoader(file_path)
         else:
             loader = TextLoader(file_path)
 
+        # Load and split the document
         documents = loader.load()
-        all_documents.extend(documents)
+        docs = text_splitter.split_documents(documents)
+        all_chunks.extend(docs)
 
-    print(f"Total documents loaded: {len(all_documents)}")
+        # Display information about the chunks for the current document
+        print(f"Number of chunks: {len(docs)}")
+        if docs:
+            print(f"Sample chunk:\n{docs[0].page_content}\n")
 
-    if not all_documents:
+    print("\n--- Summary ---")
+    print(f"Total documents processed: {len(files_to_load)}")
+    print(f"Total document chunks created: {len(all_chunks)}")
+
+    if not all_chunks:
         raise ValueError("No documents were loaded. Please check the file paths.")
-
-    # Splitting the document into chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-    docs = text_splitter.split_documents(all_documents)
-
-    # Displaying information about the split documents
-    print("\n--- Document Chunks Information ---")
-    print(f"Number of document chunks: {len(docs)}")
-    print(f"Sample chunk:\n{docs[0].page_content}\n")
 
     # Creating embeddings
     print("\n--- Creating embeddings ---")
@@ -71,7 +76,8 @@ if not os.path.exists(persistent_directory):
     # Creatting the vector store/database
     print("\n--- Creating vector store ---")
     db = Chroma.from_documents(
-        docs, embeddings, persist_directory=persistent_directory)
+        all_chunks, embeddings, persist_directory=persistent_directory
+    )
     print("\n--- Finished creating vector store ---")
 
 else:
