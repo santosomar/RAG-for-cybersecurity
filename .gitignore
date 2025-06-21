@@ -1,4 +1,16 @@
+# Python
 .venv
 .env
-.DS_Store
 *.bin
+.pyvenv.cfg
+__pycache__
+.pyproject.toml
+.python-version
+
+# macOS
+.DS_Store
+
+
+# Windows
+Thumbs.db
+

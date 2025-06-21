@@ -20,9 +20,9 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 db_dir = os.path.join(current_dir, "db")
 persistent_directory = os.path.join(db_dir, "chroma_db_secretcorp")
 
-# Step 1: Scrape the content from secretcorp.orgusing WebBaseLoader
+# Step 1: Scrape the content from hackertraining.org using WebBaseLoader
 # WebBaseLoader loads web pages and extracts their content
-urls = ["https://secretcorp.org"]
+urls = ["https://hackertraining.org"]
 
 # Create a loader for web content
 loader = WebBaseLoader(urls)
@@ -30,7 +30,7 @@ documents = loader.load()
 
 # Step 2: Split the scraped content into chunks
 # CharacterTextSplitter splits the text into smaller chunks
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
 docs = text_splitter.split_documents(documents)
 
 # Display information about the split documents
@@ -60,7 +60,7 @@ retriever = db.as_retriever(
 )
 
 # Define the user's question
-query = "What is secretcorp all about?"
+query = "What is hackertraining.org all about?"
 
 # Retrieve relevant documents based on the query
 relevant_docs = retriever.invoke(query)
