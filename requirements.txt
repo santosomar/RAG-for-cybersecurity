@@ -1,5 +1,6 @@
 python-dotenv
 langchain
+langchain-community
 langchain_openai
 openai
 tiktoken
@@ -14,3 +15,4 @@ transformers
 torch
 huggingface
 langgraph
+chromadb-ops

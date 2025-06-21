@@ -2,6 +2,7 @@
 
 # Instructor: Omar Santos @santosomar 
 
+# importing the required libraries
 import os
 
 from langchain_chroma import Chroma
@@ -11,7 +12,8 @@ from langchain_openai import OpenAIEmbeddings
 current_dir = os.path.dirname(os.path.abspath(__file__))
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
 
-# Define the embedding model
+# Define the embedding model (in this case, OpenAI's text-embedding-3-small. 
+# Note: You can also use other embedding models such as HuggingFace's SentenceTransformers, Cohere, or any other embedding model that is more appropriate for your use case. Refer to the "Selecting Embedding Models" white paper at https://sec.cloudapps.cisco.com/security/center/resources/selecting-embedding-models for some tips on selecting an embedding model.)
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # Load the existing vector store with the embedding function
@@ -19,7 +21,7 @@ db = Chroma(persist_directory=persistent_directory,
             embedding_function=embeddings)
 
 # Define the user's question
-query = "What is SSRF? And an example of an SSRF attack."
+query = "What is SSRF? Provide an example of an SSRF attack."
 
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(

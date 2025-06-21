@@ -8,7 +8,7 @@
 import os
 
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader, UnstructuredMarkdownLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import OpenAI
@@ -18,26 +18,43 @@ from langchain_openai import OpenAI
 # In this example, the text file contains information about SSRF vulnerabilities
 # # and attacks.
 current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, "data", "ssrf.txt")
+# List of files to load into the vector store
+files_to_load = [
+    os.path.join(current_dir, "data", "ssrf.txt"),
+    os.path.join(current_dir, "data", "llm_cheatsheet.md"),
+]
 persistent_directory = os.path.join(current_dir, "db", "chroma_db")
 
 # Checking if the Chroma vector store already exists
 if not os.path.exists(persistent_directory):
     print("Persistent directory does not exist. Initializing vector store...")
 
-    # Ensuring that the text file exists
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(
-            f"The file {file_path} does not exist. Please check the path."
-        )
+    all_documents = []
+    print("\n--- Loading Documents ---")
+    for file_path in files_to_load:
+        # Ensuring that the text file exists
+        if not os.path.exists(file_path):
+            print(f"Warning: The file {file_path} does not exist. Skipping.")
+            continue
 
-    # Reading the text content from the file
-    loader = TextLoader(file_path)
-    documents = loader.load()
+        print(f"-> Loading: {os.path.basename(file_path)}")
+        # Use the appropriate loader based on file extension
+        if file_path.endswith(".md"):
+            loader = UnstructuredMarkdownLoader(file_path)
+        else:
+            loader = TextLoader(file_path)
+
+        documents = loader.load()
+        all_documents.extend(documents)
+
+    print(f"Total documents loaded: {len(all_documents)}")
+
+    if not all_documents:
+        raise ValueError("No documents were loaded. Please check the file paths.")
 
     # Splitting the document into chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
-    docs = text_splitter.split_documents(documents)
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    docs = text_splitter.split_documents(all_documents)
 
     # Displaying information about the split documents
     print("\n--- Document Chunks Information ---")
