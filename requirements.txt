@@ -16,3 +16,4 @@ torch
 huggingface
 langgraph
 chromadb-ops
+unstructured
