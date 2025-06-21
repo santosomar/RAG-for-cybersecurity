@@ -5,12 +5,12 @@
 # importing the required libraries
 import os
 
-from langchain_chroma import Chroma
+from langchain_chroma import Chroma 
 from langchain_openai import OpenAIEmbeddings
 
 # Define the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
-persistent_directory = os.path.join(current_dir, "db", "chroma_db")
+persistent_directory = os.path.join(current_dir, "db", "chroma_db_security")
 
 # Define the embedding model (in this case, OpenAI's text-embedding-3-small. 
 # Note: You can also use other embedding models such as HuggingFace's SentenceTransformers, Cohere, or any other embedding model that is more appropriate for your use case. Refer to the "Selecting Embedding Models" white paper at https://sec.cloudapps.cisco.com/security/center/resources/selecting-embedding-models for some tips on selecting an embedding model.)

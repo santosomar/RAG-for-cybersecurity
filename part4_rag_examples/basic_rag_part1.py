@@ -67,6 +67,12 @@ if not os.path.exists(persistent_directory):
         raise ValueError("No documents were loaded. Please check the file paths.")
 
     # Creating embeddings
+    # Define the embedding model (in this case, OpenAI's text-embedding-3-small. 
+    # Note: You can also use other embedding models such as HuggingFace's SentenceTransformers, Cohere, or 
+    # any other embedding model that is more appropriate for your use case. Refer to the "Selecting Embedding 
+    # Models" white paper at:
+    # https://sec.cloudapps.cisco.com/security/center/resources/selecting-embedding-models 
+    # for some tips on selecting an embedding model.)
     print("\n--- Creating embeddings ---")
     embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small"
