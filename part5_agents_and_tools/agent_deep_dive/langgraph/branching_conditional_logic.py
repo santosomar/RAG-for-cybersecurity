@@ -13,21 +13,15 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, END
 from langchain.tools import Tool
 from dotenv import load_dotenv
+from typing import TypedDict, List
 
 # Load environment variables from .env
 load_dotenv()
 
-# Define the IncidentState class
-class IncidentState:
-    def __init__(self):
-        self.messages = []
-        self.indicators_of_compromise = []
-
-    def dict(self):
-        return {
-            "messages": self.messages,
-            "indicators_of_compromise": self.indicators_of_compromise
-        }
+# Define the state as a TypedDict for clarity and type checking
+class IncidentState(TypedDict):
+    messages: List[str]
+    indicators_of_compromise: List[str]
 
 # Create a ChatOpenAI model
 model = ChatOpenAI()
