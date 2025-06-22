@@ -1,15 +1,29 @@
 # LangGraph MCP Agent and Server for Cybersecurity Tools
 
-This directory contains a practical example of a Multi-Tool Communication Protocol (MCP) agent and server designed for cybersecurity operations. The example demonstrates how to create a server that exposes cybersecurity tools and an agent that can intelligently use these tools to perform tasks.
+This directory contains a practical example of a Model Context Protocol (MCP) agent and server designed for cybersecurity operations. The example demonstrates how to create a server that exposes cybersecurity tools and an agent that can intelligently use these tools to perform tasks.
 
 ## Table of Contents
 
+- [What is MCP?](#what-is-mcp)
 - [Overview](#overview)
 - [Components](#components)
   - [`cyber_mcp_server.py`](#cyber_mcp_serverpy)
   - [`cyber_agent.py`](#cyber_agentpy)
 - [Prerequisites](#prerequisites)
 - [How to Run](#how-to-run)
+
+## What is MCP?
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is an open, standardized framework designed to simplify and unify how AI applications—particularly large language models (LLMs) and autonomous agents—connect to external data sources, tools, and systems. Often described as the "USB-C of AI apps," MCP acts as a universal connector, allowing AI models to securely access, retrieve, and interact with a wide variety of business data, APIs, and software environments without the need for custom integrations for each new system. 
+
+MCP operates using a client-server architecture: AI-powered applications (clients) connect to MCP servers, which expose specific capabilities such as tools (functions the agent can call), resources (structured data sources), and prompts (predefined templates). This structure enables agents to perform multi-step, context-sensitive tasks—like pulling customer records, executing workflows, or reasoning over organizational data—by leveraging a consistent protocol for accessing and updating context. 
+
+For AI agents, MCP unlocks several key capabilities:
+- **Context Sharing and Synchronization:** Agents can maintain and exchange up-to-date context—such as goals, recent actions, and environmental state—enabling more coordinated and intelligent behavior in multi-agent or collaborative scenarios.
+- **Tool and Data Access:** Agents can dynamically discover and use tools or data sources exposed by MCP servers, making it easy to extend their abilities as new integrations become available.
+- **Security and Governance:** MCP includes features for explicit user consent, granular permissions, and secure data access, making it suitable for enterprise environments.
+- **Modularity and Scalability:** By decoupling context and integration logic from agent behavior, MCP allows new agents or data sources to be added with minimal reconfiguration, supporting rapid scaling and ecosystem growth.
+
 
 ## Overview
 
