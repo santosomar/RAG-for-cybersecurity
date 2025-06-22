@@ -17,3 +17,6 @@ huggingface
 langgraph
 chromadb-ops
 unstructured
+langchain-mcp-adapters
+mcp
+requests
