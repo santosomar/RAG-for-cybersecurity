@@ -1,16 +1,56 @@
-# Using Retrieval Augmented Generation (RAG), Langchain, and Agentic Implementatiosn for Cybersecurity Operations Course
+# AI Agents, Retrieval Augmented Generation (RAG) and Agentic Implementations for Cybersecurity Operations Course
 
 This repository contains resources and materials for the ["RAG and AI Applications for Cybersecurity and Networking Professionals"](https://learning.oreilly.com/live-events/rag-and-ai-applications-for-cybersecurity-and-networking-professionals/0642572008474/0642572008473/) and other courses by Omar Santos.
 
-## Course Overview
+# Repository Structure
+The repository is structured in the following way:
+- `part1_rag_basics/`: Code covering RAG basics.
+- `part2_prompt_templates/`: Code covering prompt engineering techniques.
+- `part3_agentic_implementations/`: Code covering agentic implementations.
+- `part4_rag_examples/`: Code covering RAG examples.
 
-This course is an exploration of using RAG, Langchain, LangGraph, and LLMs; and their practical applications in both offensive and defensive security operations.
 
-This is a basic-to-intermediate-level course designed for security professionals who are looking to enhance their knowledge and skills in AI technologies for cybersecurity. Participants should have a basic understanding of cybersecurity concepts and some experience with AI and machine learning. 
+## Many Tutorials and Examples
+The repository contains many tutorials and examples for different topics related to AI Agents, Retrieval Augmented Generation (RAG) and Agentic Implementations for Cybersecurity Operations.
 
-Get the introduction to cutting-edge AI topics such as Retrieval Augmented Generation (RAG), Langchain, LangGraph, and LlamaIndex. This 4-hour course will show you how to harness the power of Large Language Models (LLMs) for both offensive and defensive cybersecurity operations, as well as networking implementations. From enhancing threat detection to automating complex ethical hacking tasks, this course provides practical skills that are reshaping today’s cybersecurity and networking landscape.
+### Introduction to RAG in Cybersecurity
+- Introduction to Retrieval Augmented Generation (RAG)
+- Exploring the GitHub Repositories and Additional Resources
+- Embeddings and Embedding Models
+- Indexing Techniques
+- Vector Databases
+- Chunking strategies
+- RAG vs. Fine-tuning
+- Reranking, RAG Fusion, and RAPTOR
+- Running Open Weight Models with Ollama
+- Exploring Open WebUI and Other Ollama Plugins
+- Introduction to AI Agents and Agentic Implementations
+- Introduction to Agentic RAG
+- Introducing the Model Context Protocol (MCP)
+- Introducing A2A and AGNTCY
 
-RAG and AI Applications for Cybersecurity and Networking Professionals goes beyond theoretical concepts, offering hands-on experience with real-world step-by-step AI coding examples. Whether you're a red team operator looking to develop more sophisticated attacks, a blue team analyst seeking to bolster defenses, a security researcher exploring the frontiers of AI in cybersecurity or a networking professional in need of AI knowledge, this course provides the core basics and skills needed to stay ahead in today’s environments. You will learn about traditional RAG, RAG Fusion, and implementations and how to use solutions like LangChain, LlamaIndex, and vector databases including Chroma DB, pgvector, Pinecone, FAISS, and MongoDB Atlas Vector Search. We will also introduce AI agents and agentic frameworks such as LangGraph and others.
+### Introducing LangChain, LangGraph, and LLamaIndex
+- Introducing LangChain
+- LangChain vs. LlamaIndex
+- Prompt templates and system prompts
+- Introducing LangSmith
+
+### Prompt Engineering, Prompt Chains, and RAG Examples
+- Mastering Prompt Engineering
+- Exploring Basic Prompt Chain Examples 
+- Creating Prompt Branching Chains 
+- Exploring Parallel PromptChains 
+- Creating a Basic RAG Application
+- Creating a Complete RAG Application
+
+### AI Agents and Agentic Frameworks
+- Introduction to AI Agent Frameworks
+- Surveying CrewAI
+- Introducing LangGraph 
+- Exploring Examples of LangGraph in Action 
+- Exploring an Example of Agents with MCP Servers
+- Securing Agentic Implementations
+- Introduction to AI Algorithmic Red Teaming
 
 **Note**: This will continue to be a **living set of resources** with updates and new content added regularly. 
 
