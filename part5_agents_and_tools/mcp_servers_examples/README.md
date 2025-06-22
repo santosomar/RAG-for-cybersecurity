@@ -1,4 +1,4 @@
-# LangGraph MCP Agent and Server for Cybersecurity Tools
+# Multi-Tool Agent using LangGraph and MCP Servers for Cybersecurity Tools
 
 This directory contains a practical example of a Model Context Protocol (MCP) agent and server designed for cybersecurity operations. The example demonstrates how to create a server that exposes cybersecurity tools and an agent that can intelligently use these tools to perform tasks.
 
