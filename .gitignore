@@ -10,7 +10,11 @@ __pycache__
 # macOS
 .DS_Store
 
-
 # Windows
 Thumbs.db
+
+# JavaScript
+node_modules
+package-lock.json
+
 
