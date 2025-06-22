@@ -1,5 +1,5 @@
 # This script demonstrates how to scrape a web page, split the content into chunks, create embeddings for the chunks,
-# and persist the vector store using the LangChain Community module.
+# persist the vector store, and use a RAG chain to answer questions based on the scraped content.
 
 # Instructor: Omar Santos @santosomar
 
@@ -7,10 +7,13 @@
 import os
 
 from dotenv import load_dotenv
+from langchain.prompts import ChatPromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import WebBaseLoader
 from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # Load environment variables from .env
 load_dotenv()
@@ -18,7 +21,7 @@ load_dotenv()
 # Define the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 db_dir = os.path.join(current_dir, "db")
-persistent_directory = os.path.join(db_dir, "chroma_db_secretcorp")
+persistent_directory = os.path.join(db_dir, "hacker_training")
 
 # Step 1: Scrape the content from hackertraining.org using WebBaseLoader
 # WebBaseLoader loads web pages and extracts their content
@@ -66,8 +69,43 @@ query = "What is hackertraining.org all about?"
 relevant_docs = retriever.invoke(query)
 
 # Display the relevant results with metadata
-print("\n--- Relevant Documents ---")
+print("\n--- Relevant Documents from the vector store ---")
 for i, doc in enumerate(relevant_docs, 1):
     print(f"Document {i}:\n{doc.page_content}\n")
     if doc.metadata:
         print(f"Source: {doc.metadata.get('source', 'Unknown')}\n")
+
+# Step 6: Create a RAG chain to answer the question
+print("\n--- Putting it all together. Answering the question using the RAG chain ---")
+
+
+# Define the LLM (gpt-4.1-mini in this example)
+llm = ChatOpenAI(model="gpt-4.1-mini")
+
+# Define the prompt template
+template = """
+You are a cybersecurity expert. Answer the question based only on the following context:
+{context}
+
+Question: {question}
+"""
+prompt = ChatPromptTemplate.from_template(template)
+
+
+# Define a function to format the documents
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+
+# Create the RAG chain
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+
+# Invoke the chain with the user's query
+print("\n--- AI-Generated Answer ---")
+answer = rag_chain.invoke(query)
+print(answer)
