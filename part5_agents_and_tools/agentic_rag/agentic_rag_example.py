@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from langgraph.graph import END, StateGraph
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
@@ -38,7 +38,6 @@ if not os.path.exists(PERSIST_PATH):
     docs = splitter.split_documents(documents)
     embeddings = OpenAIEmbeddings()
     vectordb = Chroma.from_documents(docs, embeddings, persist_directory=PERSIST_PATH)
-    vectordb.persist()
 else:
     vectordb = Chroma(persist_directory=PERSIST_PATH, embedding_function=OpenAIEmbeddings())
 
