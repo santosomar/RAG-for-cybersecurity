@@ -78,7 +78,7 @@ async def main():
     try:
         # Example 2: Using the CISA KEV catalog tool
         cisa_response = await agent.ainvoke(
-            {"messages": [{"role": "user", "content": "get the latest CISA KEV catalog"}]}
+            {"messages": [{"role": "user", "content": "get the latest CISA KEV catalog. Explain the latest 5 vulnerabilities in the catalog."}]}
         )
         print(cisa_response['messages'][-1].content)
     except Exception as e:
