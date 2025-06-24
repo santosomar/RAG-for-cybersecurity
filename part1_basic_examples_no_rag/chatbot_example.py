@@ -1,7 +1,6 @@
-__author__ = "Omar Santos @santosomar"
-__version__ = "0.1.0"
-__license__ = "MIT"
-__description__ = "A simple chatbot example using LangChain and OpenAI"
+# This is a simple chatbot example using LangChain and OpenAI
+
+# Instructor: Omar Santos @santosomar
 
 # Importing the necessary libraries
 import streamlit as st

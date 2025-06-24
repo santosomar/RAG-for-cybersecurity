@@ -1,4 +1,4 @@
-# AI Agents, Retrieval Augmented Generation (RAG) and Agentic Implementations for Cybersecurity Operations Course
+# AI, RAG, and Agentic Workflows for Cybersecurity
 
 This repository contains resources and materials for the ["RAG and AI Applications for Cybersecurity and Networking Professionals"](https://learning.oreilly.com/live-events/rag-and-ai-applications-for-cybersecurity-and-networking-professionals/0642572008474/0642572008473/) and other courses by Omar Santos.
 
